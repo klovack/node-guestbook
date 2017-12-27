@@ -132,6 +132,7 @@ a:hover {
 @media screen and (max-width: 900px) {
   .wrapper {
     width: 600px;
+    min-height: 95vh;
   }
 
   .form {
@@ -146,6 +147,7 @@ a:hover {
 @media screen and (max-width: 600px) {
   .wrapper {
     width: 400px;
+    min-height: 98vh;
   }
 
   .form {
