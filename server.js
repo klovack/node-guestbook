@@ -13,8 +13,8 @@ const commentDB = path.join(__dirname, 'resources/comments.json');
 
 // Setting up the view
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
-hbs.registerHelper('getFaviconPath', () => 'resources/img/favicon.png');
-hbs.registerHelper('getStylePath', () => 'resources/style/style.css');
+hbs.registerHelper('getFaviconPath', () => 'img/favicon.png');
+hbs.registerHelper('getStylePath', () => 'style1/style.css');
 hbs.registerHelper('getCurrentYear', () => new Date().getFullYear());
 app.set('view engine', hbs);
 
