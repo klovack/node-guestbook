@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const expressSanitizer = require('express-sanitizer');
+const writeLog = require('./log');
 
 const port = process.env.PORT || 3000;
 const app = express();
@@ -22,6 +23,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
+app.use((req, res, next) => {
+  const now = new Date().toString();
+  const log = `${now}: ${req.method} ${req.url}`;
+
+  writeLog(log);
+  
+  next();
+});
 
 // GET
 // Main Site, it's where the guests put their comment
@@ -34,6 +43,10 @@ app.get('/comments', (req, res) => {
   // Get all the comment from the file
   fs.readFile(commentDB, 'utf8', (err, data) => {
     if (err) {
+      const now = new Date().toString();
+      const log = `${now}: ${err}`;
+      writeLog(log);
+      
       res.render('comment.hbs', {
         isNotFound: true,
       });
@@ -69,14 +82,22 @@ app.post('/comments', (req, res) => {
 
       try {
         fs.mkdirSync('resources');
+        const now = new Date().toString();
+        const log = `${now}: Make directory "resources"`;
+        writeLog(log);
       } catch (e) {
         // Do nothing
       }
 
       fs.appendFile(commentDB, JSON.stringify(commentObjs), (error) => {
         if (error) {
-          console.log(error);
+          const now = new Date().toString();
+          const log = `${now}: ${error}`;
+          writeLog(log);
         } else {
+          const now = new Date().toString();
+          const log = `${now}: Write ${JSON.stringify(commentObjs)} in ${commentDB}`;
+          writeLog(log);
           res.redirect('/comments');
         }
       });
@@ -94,8 +115,13 @@ app.post('/comments', (req, res) => {
 
       fs.writeFile(commentDB, commentString, (error) => {
         if (error) {
-          console.log(error);
+          const now = new Date().toString();
+          const log = `${now}: ${error}`;
+          writeLog(log);
         } else {
+          const now = new Date().toString();
+          const log = `${now}: Write ${JSON.stringify(guestComment)} in ${commentDB}`;
+          writeLog(log);
           res.redirect('/comments');
         }
       });
@@ -105,5 +131,7 @@ app.post('/comments', (req, res) => {
 
 // Port Listen
 app.listen(port, () => {
-  console.log(`Server is up on the port ${port}`);
+  const now = new Date().toString();
+  const log = `${now}: Server started at ${port}`;
+  writeLog(log);
 });
