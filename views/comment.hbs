@@ -1,0 +1,19 @@
+{{> header }}
+
+  <div>
+    <h1 class="center-align">Comments</h1>
+    {{#if isNotFound}}
+      <div class="comment-section warning">
+        <p class="comment-item center-align">Comment not found</p>
+      </div>
+    {{/if}}
+    {{#each pageComments}}
+      <div class="comment-section">
+        <h3 class="comment-title">{{this.name}}</h3>
+        <p class="comment-item">{{this.comment}}</p>
+      </div>
+    {{/each}}
+ 
+  </div>
+
+{{> footer }}
