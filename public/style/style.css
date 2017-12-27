@@ -78,6 +78,11 @@ a:hover {
   cursor: pointer;
 }
 
+.form-submit:focus {
+  background: rgb(85, 85, 85);
+  color: white;
+}
+
 .logo {
   width: 600px;
   margin: 0 auto;
@@ -131,22 +136,22 @@ a:hover {
 
 @media screen and (max-width: 900px) {
   .wrapper {
-    width: 600px;
+    width: 100%;
     min-height: 95vh;
   }
 
   .form {
-    width: 400px;
+    width: 40%;
   }
 
   .comment-section {
-    width: 400px;
+    width: 40%;
   }
 }
 
 @media screen and (max-width: 600px) {
   .wrapper {
-    width: 400px;
+    width: 100%;
     min-height: 98vh;
   }
 
@@ -155,12 +160,12 @@ a:hover {
   }
 
   .logo {
-    width: 400px;
+    width: 300px;
     margin: 0 auto;
   }
   
   .logo img {
-    width: 400px;
+    width: 300px;
   }
 
   .comment-section {
