@@ -78,6 +78,15 @@ a:hover {
   cursor: pointer;
 }
 
+.logo {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.logo img {
+  width: 600px;
+}
+
 .navbar {
   margin: 0 auto;
 }
@@ -131,5 +140,28 @@ a:hover {
 
   .comment-section {
     width: 400px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper {
+    width: 400px;
+  }
+
+  .form {
+    width: 200px;
+  }
+
+  .logo {
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  .logo img {
+    width: 400px;
+  }
+
+  .comment-section {
+    width: 200px;
   }
 }
